@@ -7,8 +7,9 @@ export default class UserBG extends Plugin {
     public async start() {
       let userid;
       const regex = ".*?\"(http?s:\/\/[\w.\/-]*)\"";
-      const datab = fetch("https://raw.githubusercontent.com/Discord-Custom-Covers/usrbg/master/dist/usrbg.json").then((response) => response.text());
-      this.logger.info("database " + datab);
+      const response = await fetch("https://raw.githubusercontent.com/Discord-Custom-Covers/usrbg/master/dist/usrbg.json");
+      //this.logger.info("database " + datab);
+      const datab = await response.text();
       let theimg = datab.match(userid + regex); 
       this.logger.info("match " + theimg);
       
