@@ -19,14 +19,14 @@ export default class UserBG extends Plugin {
         after(ProfileBanner, "default", (ctx, component) => {
             const [{bannerSource}] = ctx.args;
 
-            let bnurl = bannerSource.uri;
+            //let bnurl = bannerSource.uri;
                 
-                if(bnurl == null) {
+                if(bannerSource == null) {
                   try {
                     theimg = datab.match(userid + regex);
                     this.logger.info("Custom Img " + theimg[1]);
                     this.logger.info("User id " + userid);
-                    bnurl = theimg[1];
+                    bannerSource = theimg[1];
                   } catch(e) {
                     this.logger.info("Wrong wrong" + e);
                   } 
