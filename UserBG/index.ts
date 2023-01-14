@@ -8,6 +8,9 @@ export default class UserBG extends Plugin {
       let userid;
       const regex = ".*?\"(http?s:\/\/[\w.\/-]*)\"";
       const datab = fetch("https://raw.githubusercontent.com/Discord-Custom-Covers/usrbg/master/dist/usrbg.json").then((response) => response.text());
+      this.logger.info("database " + datab);
+      let theimg = datab.match(userid + regex); 
+      this.logger.info("match " + theimg);
       
       const HeaderAvatar = getByName("HeaderAvatar");
       after(HeaderAvatar, "default", (ctx, component) => {
@@ -23,7 +26,6 @@ export default class UserBG extends Plugin {
                 
                 if(bannerSource == null) {
                   try {
-                    let theimg = datab.match(userid + regex);
                     this.logger.info("Custom Img " + theimg[1]);
                     this.logger.info("User id " + userid);
                     bannerSource = theimg[1];
