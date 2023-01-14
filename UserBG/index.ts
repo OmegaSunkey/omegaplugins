@@ -9,11 +9,11 @@ export default class UserBG extends Plugin {
       const regex = ".*?\"(http?s:\/\/[\w.\/-]*)\"";
       const datab = fetch("https://raw.githubusercontent.com/Discord-Custom-Covers/usrbg/master/dist/usrbg.json").then((response) => response.text());
       
-        const HeaderAvatar = getByName("HeaderAvatar");
-        after(HeaderAvatar, "default", (ctx, component) => {
+      const HeaderAvatar = getByName("HeaderAvatar");
+      after(HeaderAvatar, "default", (ctx, component) => {
           const [{user, style}] = ctx.args;
           userid = Object.values(user)[3]; //the most cursed way to get an id 
-        }); 
+      }); 
         
         const ProfileBanner = getByName("ProfileBanner"); //thank you cloudburst https://github.com/c10udburst-discord/Aliucord-RightNow-Plugins 
         after(ProfileBanner, "default", (ctx, component) => {
@@ -21,7 +21,7 @@ export default class UserBG extends Plugin {
 
             let bnurl = bannerSource.uri;
                 
-                if(bnurl === null) {
+                if(bnurl == null) {
                   try {
                     theimg = datab.match(userid + regex);
                     this.logger.info("Custom Img " + theimg[1]);
