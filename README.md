@@ -1,18 +1,6 @@
-# Plugin Template for AliucordRN
+# OmegaPlugins
 
-This template uses typescript and the pnpm package manager
+OmegaSunkey's plugins for AliucordRN!!
 
 Make a copy of this template, clone it and run `pnpm install`
 
-## Building plugins
-
-Build Plugin:
-```sh
-pnpm build TokenLogger
-```
-
-Watch for changes and auto compile & deploy* :
-```sh
-pnpm watch TokenLogger
-```
-\* Requires adb installed and to be connected to your phone
