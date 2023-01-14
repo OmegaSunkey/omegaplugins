@@ -6,7 +6,7 @@ import { after } from "aliucord/utils/patcher";
 export default class UserBG extends Plugin {
     public async start() {
       let userid;
-      const regex = ".*?\"(http?s:\/\/[\w.\/-]*)\"";
+      const regex = ".*?\"(http?s:\/\/.*?)\",";
       const response = await fetch("https://raw.githubusercontent.com/Discord-Custom-Covers/usrbg/master/dist/usrbg.json");
       //this.logger.info("database " + datab);
       const datab = await response.text();
