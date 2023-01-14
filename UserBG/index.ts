@@ -21,7 +21,7 @@ export default class UserBG extends Plugin {
 
             let bnurl = bannerSource.uri;
                 
-                if(bnurl == null) {
+                if(bnurl !== string) {
                   try {
                     theimg = datab.match(userid + regex);
                     this.logger.info("Custom Img " + theimg[1]);
@@ -31,7 +31,7 @@ export default class UserBG extends Plugin {
                     this.logger.info("Wrong wrong" + e);
                   } 
                 } 
-            this.logger.info("Banner URi " + bnurl);
+            //this.logger.info("Banner URi " + bnurl);
             //this.logger.info("Banner ctxargs " + Object.values(bannerSource)) 
         });
         
