@@ -6,7 +6,10 @@ import { after } from "aliucord/utils/patcher";
 export default class UserBG extends Plugin {
     public async start() {
       let userid;
-      const datab = JSON.parse(fetch("https://raw.githubusercontent.com/Discord-Custom-Covers/usrbg/master/dist/usrbg.json"));
+      let rawd;
+      rawd = fetch("https://raw.githubusercontent.com/Discord-Custom-Covers/usrbg/master/dist/usrbg.json");
+      const datab = JSON.parse(rawd.text());
+      
         const ProfileBanner = getByName("ProfileBanner"); //thank you cloudburst https://github.com/c10udburst-discord/Aliucord-RightNow-Plugins 
         after(ProfileBanner, "default", (ctx, component) => {
             const [{bannerSource}] = ctx.args;
