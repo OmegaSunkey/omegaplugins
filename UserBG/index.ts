@@ -11,7 +11,7 @@ export default class UserBG extends Plugin {
         after(ProfileBanner, "default", (ctx, component) => {
             const [{bannerSource}] = ctx.args;
 
-            const bnurl = bannerSource.uri;
+            let bnurl = bannerSource.uri;
                 
                 if(bnurl === null) {
                   try {
