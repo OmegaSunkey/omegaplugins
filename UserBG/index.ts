@@ -27,6 +27,7 @@ export default class UserBG extends Plugin {
           const [{user, style}] = ctx.args;
           
           this.logger.info("What is this " + Object.values(user));
+          this.logger.info("Will this error " + Object.values(user[4]));
         });
     }
 }
