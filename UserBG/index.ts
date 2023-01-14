@@ -18,15 +18,15 @@ export default class UserBG extends Plugin {
                /* if(bnurl === null) {
                   
                 } */
-            this.logger.info("Banner URi " + url);
+            this.logger.info("Banner URi " + bnurl);
             this.logger.info("Banner ctxargs " + Object.values(bannerSource)) 
         });
         
         const HeaderAvatar = getByName("HeaderAvatar");
         after(HeaderAvatar, "default", (ctx, component) => {
-          const [{avatarsrc}] = ctx.args;
+          const [{user, style}] = ctx.args;
           
-          this.logger.info("What is this " + Object.values(avatarsrc));
+          this.logger.info("What is this " + Object.values(user));
         });
     }
 }
