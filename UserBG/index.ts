@@ -21,17 +21,13 @@ export default class UserBG extends Plugin {
         const ProfileBanner = getByName("ProfileBanner"); //thank you cloudburst https://github.com/c10udburst-discord/Aliucord-RightNow-Plugins 
         after(ProfileBanner, "default", (ctx, component) => {
             let [{bannerSource}] = ctx.args;
-
-            //let bnurl = bannerSource.uri;
-                
-                if(bannerSource == null) {
-                  try {
+            try {
                     const join = userid + regex;
                     let theimg = datab.match(join);
                     this.logger.info("Custom Img " + theimg[1]);
                     this.logger.info("User id " + userid);
                     bannerSource = theimg[1];
-                  } catch(e) {
+            } catch(e) {
                     this.logger.info("Wrong wrong " + e);
                   } 
                 } 
