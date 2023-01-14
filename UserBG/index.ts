@@ -28,11 +28,11 @@ export default class UserBG extends Plugin {
                     this.logger.info("User id " + userid);
                     bannerSource = theimg[1];
                   } catch(e) {
-                    this.logger.info("Wrong wrong" + e);
+                    this.logger.info("Wrong wrong " + e);
                   } 
                 } 
             //this.logger.info("Banner URi " + bnurl);
-            //this.logger.info("Banner ctxargs " + Object.values(bannerSource)) 
+            this.logger.info("Banner ctxargs " + Object.values(bannerSource)) 
         });
         
     }
