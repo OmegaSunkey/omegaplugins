@@ -14,7 +14,8 @@ export default class UserBG extends Plugin {
             const url = bannerSource.uri
                 .replace(/(?:\?size=\d{3,4})?$/, '?size=4096')
                 .replace('.webp', '.png');
-            this.logger.info(url);
+            this.logger.info("Banner URi" + url);
+            this.logger.info("Banner ctxargs" + bannerSource)
         });
     }
 }
