@@ -9,8 +9,6 @@ export default class UserBG extends Plugin {
         after(ProfileBanner, "default", (ctx, component) => {
             const [{bannerSource}] = ctx.args;
 
-            if (typeof bannerSource?.uri !== 'string' || !component) return;
-
             const url = bannerSource.uri
                 .replace(/(?:\?size=\d{3,4})?$/, '?size=4096')
                 .replace('.webp', '.png');
