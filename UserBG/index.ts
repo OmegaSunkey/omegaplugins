@@ -21,7 +21,7 @@ export default class UserBG extends Plugin {
 
             let bnurl = bannerSource.uri;
                 
-                if(bnurl !== string) {
+                if(bnurl == null) {
                   try {
                     theimg = datab.match(userid + regex);
                     this.logger.info("Custom Img " + theimg[1]);
