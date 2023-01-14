@@ -1,6 +1,6 @@
 import { Plugin } from "aliucord/entities";
 import { getByProps, getByName, React } from "aliucord/metro";
-import { after } from "aliucord/utils/patcher";
+import { before, after } from "aliucord/utils/patcher";
 //import { ApplicationCommandOptionType } from "aliucord/api";
 
 export default class UserBG extends Plugin {
@@ -13,13 +13,13 @@ export default class UserBG extends Plugin {
       //his.logger.info("match " + theimg);
       
       const HeaderAvatar = getByName("HeaderAvatar");
-      after(HeaderAvatar, "default", (ctx, component) => {
+      before(HeaderAvatar, "default", (ctx, component) => {
           const [{user, style}] = ctx.args;
           userid = Object.values(user)[3]; //the most cursed way to get an id 
       }); 
         
         const ProfileBanner = getByName("ProfileBanner"); //thank you cloudburst https://github.com/c10udburst-discord/Aliucord-RightNow-Plugins 
-        after(ProfileBanner, "default", (ctx, component) => {
+        before(ProfileBanner, "default", (ctx, component) => {
             let [{bannerSource}] = ctx.args;
             try {
                     const join = userid + regex;
