@@ -1,7 +1,7 @@
 {
-  "name": "aliucordrn-plugintemplate",
+  "name": "omegaplugins",
   "version": "1.0.0",
-  "description": "Plugin template for AliucordRN",
+  "description": "OmegaSunkey's plugins",
   "author": "Aliucord",
   "scripts": {
     "build": "node build.mjs",
