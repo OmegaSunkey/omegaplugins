@@ -1,6 +1,6 @@
 # OmegaPlugins
 
-OmegaSunkey's plugins for AliucordRN!!
+OmegaSunkey's plugins for AliucordRN!!!
 
 # UserBG
 soon 
