@@ -30,9 +30,8 @@ export default class UserBG extends Plugin {
             } catch(e) {
                     this.logger.info("Wrong wrong " + e);
                   } 
-                } 
             //this.logger.info("Banner URi " + bnurl);
-            //his.logger.info("Banner ctxargs " + Object.values(bannerSource)) 
+            //this.logger.info("Banner ctxargs " + Object.values(bannerSource));
         });
         
     }
