@@ -51,7 +51,7 @@ export default class SlashBooru extends Plugin {
       //const reg = "file_url=\"(https?:\/\/[\w.\/-]*)\"";
       const url = "https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=${limit}&pid=${pid}&tags=${tag}&json=1";
       let response = await (await fetch(url)).json();
-      let imarray = JSON.parse(response).post.file_url;
+      let imarray = response;
       this.logger.info(imarray);
       return imarray;
     } 
