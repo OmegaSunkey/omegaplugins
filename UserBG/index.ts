@@ -1,7 +1,7 @@
 import { Plugin } from "aliucord/entities";
 import { getByProps, getByName, React } from "aliucord/metro";
 import { before, after } from "aliucord/utils/patcher";
-import { Image } from "react-native";
+import { View, Image } from "react-native";
 //import { ApplicationCommandOptionType } from "aliucord/api";
 
 export default class UserBG extends Plugin {
@@ -29,7 +29,11 @@ export default class UserBG extends Plugin {
                     let theimg = datab.match(join);
                     this.logger.info("Custom Img " + theimg[1]);
                     this.logger.info("User id " + userid);
-                    ctx.result = <Image source={(theimg[1])}/>
+                    ctx.result = <View> 
+                    <Image 
+                    source={{uri: theimg[1]}}
+                    />
+                    </View>
             } catch(e) {
                     this.logger.info("Wrong wrong " + e);
                   } 
