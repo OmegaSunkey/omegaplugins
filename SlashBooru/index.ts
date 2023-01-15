@@ -1,7 +1,7 @@
 import { Plugin } from "aliucord/entities";
 import { getByProps, MessageActions } from "aliucord/metro";
 import { ApplicationCommandOptionType } from "aliucord/api";
-import { parseString } from "xml2js";
+//import { parseString } from "xml2js";
 
 export default class SlashBooru extends Plugin {
     public async start() {
@@ -37,7 +37,7 @@ export default class SlashBooru extends Plugin {
                 }
             ],
             execute: (args, ctx) => {
-                const end = this.Safebooru(args[0].value, args[1].value, args[2].value);
+                const end = this.Gelbooru(args[0].value, args[1].value, args[2].value);
                 if(args[3]) { 
                   MessageActions.sendMessage(ctx.channel.id, {content: end} );
                 } else {
@@ -46,12 +46,13 @@ export default class SlashBooru extends Plugin {
             }
         });
     }
-    public async Safebooru(tag, pid, limit) {
+    public async Gelbooru(tag, pid, limit) {
       if(limit > 5) limit = 5;
-      const url = "https://safebooru.org/index.php?page=dapi&s=post&q=index&limit=${limit}&pid=${pid}&tags=${tag}";
-      let response = await (await fetch(url)).text();
-      let img = parseString(response => JSON.stringify(response));
-      this.logger.info(img);
-      return img;
+      //const reg = "file_url=\"(https?:\/\/[\w.\/-]*)\"";
+      const url = "https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=${limit}&pid=${pid}&tags=${tag}&json=1";
+      let response = await (await fetch(url)).json();
+      let imarray = JSON.parse(response).post.file_url;
+      this.logger.info(imarray);
+      return imarray;
     } 
 } 
