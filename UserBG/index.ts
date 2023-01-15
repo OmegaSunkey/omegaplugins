@@ -1,6 +1,7 @@
 import { Plugin } from "aliucord/entities";
 import { getByProps, getByName, React } from "aliucord/metro";
 import { before, after } from "aliucord/utils/patcher";
+import { Image } from "react-native";
 //import { ApplicationCommandOptionType } from "aliucord/api";
 
 export default class UserBG extends Plugin {
@@ -21,14 +22,14 @@ export default class UserBG extends Plugin {
         const ProfileBanner = getByName("ProfileBanner"); //thank you cloudburst https://github.com/c10udburst-discord/Aliucord-RightNow-Plugins 
         before(ProfileBanner, "default", (ctx, component) => {
             let [{bannerSource}] = ctx.args;
-            this.logger.info("result?? " + ctx.result);
-            this.logger.info("component??? " + component);
+            //this.logger.info("result?? " + ctx.result);
+            //this.logger.info("component??? " + component);
             try {
                     const join = userid + regex;
                     let theimg = datab.match(join);
                     this.logger.info("Custom Img " + theimg[1]);
                     this.logger.info("User id " + userid);
-                    ctx.result = theimg[1];
+                    ctx.result = <Image source={theimg[1]}/>
             } catch(e) {
                     this.logger.info("Wrong wrong " + e);
                   } 
