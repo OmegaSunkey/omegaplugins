@@ -37,7 +37,7 @@ export default class SlashBooru extends Plugin {
                 }
             ],
             execute: (args, ctx) => {
-                const end = Safebooru(args[0].value, args[1].value, args[2].value);
+                const end = await this.Safebooru(args[0].value, args[1].value, args[2].value);
                 if(args[3]) { 
                   MessageActions.sendMessage(ctx.channel.id, {content: end} );
                 } else {
@@ -46,7 +46,7 @@ export default class SlashBooru extends Plugin {
             }
         });
     }
-    public Safebooru(tag, pid, limit) {
+    public async Safebooru(tag, pid, limit) {
       if(limit > 5) limit = 5;
       const url = "https://safebooru.org/index.php?page=dapi&s=post&q=index&limit=${limit}&pid=${pid}&tags=${tag}";
       let response = await (await fetch(url)).text();
