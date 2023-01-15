@@ -1,45 +1,36 @@
 import { Plugin } from "aliucord/entities";
-import { getByProps, getByName, React } from "aliucord/metro";
-import { before, after } from "aliucord/utils/patcher";
-import { View, Image } from "react-native";
-//import { ApplicationCommandOptionType } from "aliucord/api";
+import { getByName } from "aliucord/metro";
+import { before } from "aliucord/utils/patcher";
 
 export default class UserBG extends Plugin {
     public async start() {
-      let userid;
-      const regex = ".*?\"(http?s:\/\/.*?)\",";
-      const response = await fetch("https://raw.githubusercontent.com/Discord-Custom-Covers/usrbg/master/dist/usrbg.json");
-      //this.logger.info("database " + datab);
-      const datab = await response.text();
-      //his.logger.info("match " + theimg);
-      
-      const HeaderAvatar = getByName("HeaderAvatar");
-      before(HeaderAvatar, "default", (ctx, component) => {
-          const [{user, style}] = ctx.args;
-          userid = Object.values(user)[3]; //the most cursed way to get an id 
-      }); 
-        
-        const ProfileBanner = getByName("ProfileBanner"); //thank you cloudburst https://github.com/c10udburst-discord/Aliucord-RightNow-Plugins 
-        before(ProfileBanner, "default", (ctx, component) => {
-            let [{bannerSource}] = ctx.args;
-            //this.logger.info("result?? " + ctx.result);
-            //this.logger.info("component??? " + component);
-            try {
-                    const join = userid + regex;
-                    let theimg = datab.match(join);
-                    this.logger.info("Custom Img " + theimg[1]);
-                    this.logger.info("User id " + userid);
-                    ctx.result = <View> 
-                    <Image 
-                    source={{uri: theimg[1]}}
-                    />
-                    </View>
-            } catch(e) {
-                    this.logger.info("Wrong wrong " + e);
-                  } 
-            //this.logger.info("Banner URi " + bnurl);
-            //this.logger.info("Banner ctxargs " + Object.values(bannerSource));
+        let userid: string;
+        type userBGData = {
+            uid: string;
+            img: string;
+        }
+
+        const datab = await (await fetch("https://raw.githubusercontent.com/Discord-Custom-Covers/usrbg/master/dist/usrbg.json")).json();
+
+        before(getByName("HeaderAvatar"), "default", (ctx, component) => {
+            const { user } = ctx.args[0];
+            userid = user.id //the most cursed way to get an id 
         });
-        
+
+        before(getByName("ProfileBanner"), "default", (ctx, component) => {
+            let banner = ctx.args[0];
+
+            try {
+                if (!banner.bannerSource) {
+                    if (datab.find((i: userBGData) => i.uid == userid)) {
+                        const userCustomBanner = datab.find((i: userBGData) => i.uid == userid) as userBGData;
+
+                        banner.bannerSource = { uri: userCustomBanner.img };
+                    }
+                }
+            } catch (e) {
+                this.logger.error("UserBG Error:", e);
+            }
+        });
     }
 }
