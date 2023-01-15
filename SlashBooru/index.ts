@@ -37,7 +37,7 @@ export default class SlashBooru extends Plugin {
                 }
             ],
             execute: (args, ctx) => {
-                const end = await this.Safebooru(args[0].value, args[1].value, args[2].value);
+                const end = this.Safebooru(args[0].value, args[1].value, args[2].value);
                 if(args[3]) { 
                   MessageActions.sendMessage(ctx.channel.id, {content: end} );
                 } else {
