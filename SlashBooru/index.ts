@@ -46,7 +46,7 @@ export default class SlashBooru extends Plugin {
             }
         });
     }
-    function Safebooru(tag, pid, limit) {
+    public Safebooru(tag, pid, limit) {
       if(limit > 5) limit = 5;
       const url = "https://safebooru.org/index.php?page=dapi&s=post&q=index&limit=${limit}&pid=${pid}&tags=${tag}";
       let response = await (await fetch(url)).text();
