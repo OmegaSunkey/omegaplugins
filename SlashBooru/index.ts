@@ -38,7 +38,7 @@ export default class SlashBooru extends Plugin {
             ],
             execute: (args, ctx) => {
                 const end = this.Gelbooru(args[0].value, args[1].value, args[2].value);
-                if(args[3]) { 
+                if(args[3].value) { 
                   MessageActions.sendMessage(ctx.channel.id, {content: end} );
                 } else {
                   Clyde.sendBotMessage(ctx.channel.id, end);
@@ -51,8 +51,8 @@ export default class SlashBooru extends Plugin {
       //const reg = "file_url=\"(https?:\/\/[\w.\/-]*)\"";
       const url = "https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=${limit}&pid=${pid}&tags=${tag}&json=1";
       let response = await (await fetch(url)).json();
-      let imarray = response;
-      this.logger.info(imarray);
-      return imarray;
+      let posts = response.post;
+      //this.logger.info(imarray);
+      return posts.map(h => h.file_url).toString().replace(",", " ");
     } 
 } 
