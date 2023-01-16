@@ -1,5 +1,6 @@
 import { Plugin } from "aliucord/entities";
-import { getByName } from "aliucord/metro";
+import { getByName, React } from "aliucord/metro";
+import { SettingsPage } from "./ui/SettingsPage";
 import { before } from "aliucord/utils/patcher";
 
 export default class UserBG extends Plugin {
@@ -32,5 +33,8 @@ export default class UserBG extends Plugin {
                 this.logger.error("UserBG Error:", e);
             }
         });
+    }
+    public getSettingsPage() {
+        return <SettingsPage />;
     }
 }
