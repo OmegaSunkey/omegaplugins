@@ -36,7 +36,7 @@ export default class SlashBooru extends Plugin {
                   required: false
                 }
             ],
-            execute: (args, ctx) => {
+            execute: async (args, ctx) => {
                 const end = await this.Gelbooru(args[0].value, args[1].value, args[2].value);
                 this.logger.info(args[3].value);
                 if(args[3].value) { 
