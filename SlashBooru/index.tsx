@@ -37,7 +37,8 @@ export default class SlashBooru extends Plugin {
                 }
             ],
             execute: (args, ctx) => {
-                const end = this.Gelbooru(args[0].value, args[1].value, args[2].value);
+                const end = await this.Gelbooru(args[0].value, args[1].value, args[2].value);
+                this.logger.info(args[3].value);
                 if(args[3].value) { 
                   MessageActions.sendMessage(ctx.channel.id, {content: end} );
                 } else {
@@ -46,13 +47,14 @@ export default class SlashBooru extends Plugin {
             }
         });
     }
-    public Gelbooru(tag, pid, limit) {
+    public async Gelbooru(tag, pid, limit) {
       if(limit > 5) limit = 5;
       //const reg = "file_url=\"(https?:\/\/[\w.\/-]*)\"";
       const url = `https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=${limit}&pid=${pid}&tags=${tag}&json=1`;
-      let response = fetch(url).then(r => r.json());
+      let response = await fetch(url).then(r => r.json());
       let posts = response.post;
+      let imagearray = posts.map(h => h.file_url).toString().replace(",", " ");
       //this.logger.info(imarray);
-      return posts.map(h => h.file_url).toString().replace(",", " ");
+      return imagearray
     } 
 } 
