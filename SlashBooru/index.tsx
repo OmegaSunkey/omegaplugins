@@ -1,16 +1,21 @@
 import { Plugin } from "aliucord/entities";
 import { getByProps, MessageActions } from "aliucord/metro";
 import { ApplicationCommandOptionType } from "aliucord/api";
-//import { parseString } from "xml2js";
 
 export default class SlashBooru extends Plugin {
     public async start() {
       const Clyde = getByProps("sendBotMessage");
         this.commands.registerCommand(
           {
-            name: "Safebooru",
-            description: "Get Safebooru images",
+            name: "Booru",
+            description: "Get (insert)Booru images",
             options: [
+                {
+                  name: "Booru", 
+                  description: "Choose your Booru URL (ex: gelbooru.com). SAFEBOORU IS NOT SUPPORTED (i hate xml) ", 
+                  type: ApplicationCommandOptionType.STRING, 
+                  required: true
+                }, 
                 {
                     name: "tag",
                     description: "The tag that you want to search",
@@ -37,9 +42,8 @@ export default class SlashBooru extends Plugin {
                 }
             ],
             execute: async (args, ctx) => {
-                const end = await this.Gelbooru(args[0].value, args[1].value, args[2].value);
-                this.logger.info(args[3].value);
-                if(args[3].value) { 
+                const end = await this.Booru(args[0].value, args[1].value, args[2].value, args[3].value);
+                if(args[4].value) { 
                   MessageActions.sendMessage(ctx.channel.id, {content: end} );
                 } else {
                   Clyde.sendBotMessage(ctx.channel.id, end);
@@ -47,10 +51,10 @@ export default class SlashBooru extends Plugin {
             }
         });
     }
-    public async Gelbooru(tag, pid, limit) {
+    public async Booru(source, tag, pid, limit) {
       if(limit > 5) limit = 5;
       //const reg = "file_url=\"(https?:\/\/[\w.\/-]*)\"";
-      const url = `https://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=${limit}&pid=${pid}&tags=${tag}&json=1`;
+      const url = `https://${source}/index.php?page=dapi&s=post&q=index&limit=${limit}&pid=${pid}&tags=${tag}&json=1`;
       let response = await fetch(url).then(r => r.json());
       let posts = response.post;
       let imagearray = posts.map(h => h.file_url).toString().replace(",", " ");

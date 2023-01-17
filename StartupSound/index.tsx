@@ -1,5 +1,5 @@
 import { Plugin } from "aliucord/entities";
-import { getByProps } from "aliucord/metro";
+import { getByProps, React } from "aliucord/metro";
 
 export default class StartupSound extends Plugin {
     public async start() {
