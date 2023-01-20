@@ -5,7 +5,8 @@
   "author": "Aliucord",
   "scripts": {
     "build": "node build.mjs",
-    "watch": "node build.mjs --watch"
+    "watch": "node build.mjs --watch",
+    "buildAll": "sh buildAll.sh"
   },
   "devDependencies": {
     "@aliucord/rollup-plugin": "^1.0.2",
