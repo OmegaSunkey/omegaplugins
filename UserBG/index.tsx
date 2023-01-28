@@ -11,8 +11,7 @@ export default class UserBG extends Plugin {
             img: string;
         }
 
-        //const datab = await (await fetch("https://raw.githubusercontent.com/Discord-Custom-Covers/usrbg/master/dist/usrbg.json")).json();
-        const datab = this.database();
+        const datab = await (await fetch("https://raw.githubusercontent.com/Discord-Custom-Covers/usrbg/master/dist/usrbg.json")).json();
 
         before(getByName("HeaderAvatar"), "default", (ctx, component) => {
             const { user } = ctx.args[0];
@@ -35,19 +34,6 @@ export default class UserBG extends Plugin {
             }
         });
     }
-    
-    public delay(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    } 
-    
-    public async database() {
-      while(true) {
-        let h = await (await fetch("https://raw.githubusercontent.com/Discord-Custom-Covers/usrbg/master/dist/usrbg.json")).json();
-        this.logger.info("Downloaded UserBG database");
-        return h;
-        await this.delay(36000);
-      } 
-    } 
     
     public getSettingsPage() {
         return <SettingsPage />;
