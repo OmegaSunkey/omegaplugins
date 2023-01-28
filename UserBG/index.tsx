@@ -45,7 +45,7 @@ export default class UserBG extends Plugin {
         let h = await (await fetch("https://raw.githubusercontent.com/Discord-Custom-Covers/usrbg/master/dist/usrbg.json")).json();
         this.logger.info("Downloaded UserBG database");
         return h;
-        await delay(36000);
+        await this.delay(36000);
       } 
     } 
     
