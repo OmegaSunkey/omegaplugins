@@ -1,6 +1,6 @@
 import { Plugin } from "aliucord/entities";
 import { getByName, React } from "aliucord/metro";
-import { SettingsPage } from "./ui/SettingsPage";
+//import { SettingsPage } from "./ui/SettingsPage";
 import { before } from "aliucord/utils/patcher";
 
 export default class UserBG extends Plugin {
@@ -35,7 +35,7 @@ export default class UserBG extends Plugin {
         });
     }
     
-    public getSettingsPage() {
+   /* public getSettingsPage() {
         return <SettingsPage />;
-    }
+    } */
 }
